@@ -1,0 +1,11 @@
+body {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+    background-image: url('space.jpg');
+    background-size:     cover;                     
+    background-repeat:   no-repeat;
+    background-position: center center;
+}
