@@ -7,7 +7,6 @@ if (graphics != false){
 	}
 }
 
-
 function setup() {
 	createCanvas(window.innerWidth, window.innerHeight)
 
