@@ -3,35 +3,16 @@ var Target = function(pos, rad, points) {
 	let self = this
 	this.position = createVector(pos.x, pos.y)
 	this.velocity = 1
-	
-
-
-	function angle(){
-		let dy = ship.position.y - self.position.y
-		let dx = ship.position.x - self.position.x
-		return atan2(dy, dx)
-	}
-
-
-	function heading() {
-		let vx = self.velocity * cos(angle())
-		let vy = self.velocity * sin(angle())
-		console.log(vx + " " + vy)
-		return createVector(vx, vy)
-	}
-
-	//this.directionVector = () => createVector(this.vx, this.vy);
-
+	this.alive = true
 	this.radius = rad
 	this.points = points
 	
+	this.isHit = (index) => this.alive = false
 
 	this.run = function() {
 		this.update()
 		this.display()
 	}
-
-	this.alive = true
 
 	this.display = function() {
 		push()
@@ -44,12 +25,8 @@ var Target = function(pos, rad, points) {
 		pop()
 	}
 
-	this.isHit = function(index) {
-		this.alive = false
-
-	}
-
+	// mover, destination, angle, velocity, accuracy
 	this.update = function() {
-		this.position.add(heading()) 
+		this.position.add(Physics.heading(self.position, ship.position, this.velocity))
 	}
 }
