@@ -1,14 +1,14 @@
 //////////////////////////////////////////////
 // ship class
 var Ship = function() {
+	let self = this
 	this.alive = true
 	this.position = createVector(width / 2, height - 15)
-
+	
 	this.aim = function() {
-		this.dx = this.position.x - mouseX
-		this.dy = this.position.y - mouseY
-		return atan2(this.dy, this.dx)
+		return Physics.angle(self.position, createVector(mouseX, mouseY))
 	}
+	
     this.contact = false
 
     this.colorState = function(){
