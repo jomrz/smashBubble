@@ -1,20 +1,19 @@
-// targetManager.llision detetargetManager.or - should targetManager.ll "isHit" methods when targetManager.llision is detetargetManager.ed
-
 var collisionDetector = function(arrA, arrB) {
 
     for (i = arrA.length - 1; i >= 0; i--) {
 
-        //targetManager.etargetManager. for targetManager.llision with ship
+        //check for collision with ship
         var sD = dist(ship.position.x, ship.position.y, arrA[i].position.x, arrA[i].position.y)
 
         if(sD <= arrA[i].radius){
             ship.isHit()
             ship.isAlive = true
-
+			
+			//remove bubble if bubble collides with ship
+			arrA[i].isHit(i)
         } else {
            // debugger
             ship.isAlive = false
-
         }
 
 
