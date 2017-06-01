@@ -1,20 +1,12 @@
-
-
-////////////////////////////////////////
-// Shot Class
-// could add acceleration later if wanted
-
-var Shot = function(pos, angle, speed) {
-    //this.acceleration = createVector(0.5,0.5);
-    this.speed = speed
+var Shot = function(pos, angle, velocity) {
+	let self = this
+	
     this.position = createVector(pos.x, pos.y)
     this.diameter = 3
     this.radius = this.diameter / 2
-    this.accuracy = random(-0.1, 0.1)
-    this.dx = (cos(angle) * -this.speed)
-    this.dy = (sin(angle) * -this.speed)
-
-    this.velocity = createVector(this.dx + this.accuracy, this.dy + this.accuracy)
+    this.accuracy = random(-0.2, 0.2)
+	this.velocity = velocity
+    this.trajectory = Physics.trajectory(this.position, createVector(mouseX, mouseY), this.velocity, this.accuracy)
 
     this.display = function() {
     	push()
@@ -24,8 +16,7 @@ var Shot = function(pos, angle, speed) {
     }
 
     this.update = function() {
-        //this.velocity.add(this.acceleration)
-        this.position.add(this.velocity)
+		this.position.add(this.trajectory)
     }
 
     this.isHit = function(index) {
@@ -36,5 +27,4 @@ var Shot = function(pos, angle, speed) {
     	this.update()
     	this.display()
     }
-
 }
